@@ -1,7 +1,8 @@
-version: '3'
+version: '3.5'
 
 services:
   mariadb:
+    image: mariadb
     container_name: mariadb
     build: ./requirements/mariadb/
     volumes:
@@ -10,38 +11,28 @@ services:
       - inception
     env_file:
       - .env
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     restart: always
   wordpress:
+    image: wordpress
     container_name: wordpress
     build: ./requirements/wordpress/
-    ports:
-      - 9000:9000
     volumes:
-      - wordpress:/var/www/html/wordpress
+      - wordpress:/var/www/html/wordpress/
     networks:
       - inception
     depends_on:
       - mariadb
     env_file:
       - .env
-    environment:
-      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
-      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
-      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
-      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
     restart: always
   nginx:
+    image: nginx
     container_name: nginx
     build: ./requirements/nginx/
     ports:
       - 443:443
     volumes:
-      - wordpress:/var/www/html/wordpress
+      - wordpress:/var/www/html/wordpress/
     networks:
       - inception
     depends_on:
@@ -50,16 +41,15 @@ services:
 
 networks:
   inception:
-    driver: bridge
-
+      name: inception
 volumes:
   mariadb:
     driver_opts:
       type: none
       o: bind
-      device: /home/omanar/data/mariadb/
+      device: /home/omanar/data/mariadb/.
   wordpress:
     driver_opts:
       type: none
       o: bind
-      device: /home/omanar/data/wordpress/
+      device: /home/omanar/data/wordpress/.

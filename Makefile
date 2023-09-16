@@ -5,22 +5,22 @@ all: $(NAME)
 $(NAME): build start
 
 build:
-	docker compose -f ./srcs/docker-compose.yml build
+	sudo docker-compose -f ./srcs/docker-compose.yml build
 
 start:
-	docker-compose -f ./srcs/docker-compose.yml up -d
+	sudo docker-compose -f ./srcs/docker-compose.yml up 
 
 stop:
-	docker-compose -f ./srcs/docker-compose.yml down
+	sudo docker-compose -f ./srcs/docker-compose.yml down
 
 restart:
-	docker-compose -f ./srcs/docker-compose.yml restart
+	sudo docker-compose -f ./srcs/docker-compose.yml restart
 
 clean:
-	docker-compose -f ./srcs/docker-compose.yml down -v
-	docker system prune -a
-	rm -rf /home/omanar/data/mariadb/*
-	rm -rf /home/omanar/data/wordpress/*
+	sudo docker-compose -f ./srcs/docker-compose.yml down -v
+	sudo docker system prune -a
+	sudo rm -rf /home/omanar/data/mariadb/*
+	sudo rm -rf /home/omanar/data/wordpress/*
 
 help:
 	@echo "Available targets:"
