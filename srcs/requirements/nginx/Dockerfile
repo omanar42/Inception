@@ -3,7 +3,7 @@ FROM debian:bullseye
 RUN  apt-get update && \
 	 apt-get install -y nginx openssl
 
-COPY ./tools/nginx.conf /etc/nginx/nginx.conf
+COPY ./tools/omanar.42.fr.conf /etc/nginx/conf.d/
 
 COPY ./tools/omanar.42.fr.crt /etc/ssl/
 

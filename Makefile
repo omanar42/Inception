@@ -32,4 +32,4 @@ help:
 	@echo "  clean     : Remove Docker containers and volumes"
 	@echo "  help      : Display this help message"
 
-re: fclean all
+re: clean all
