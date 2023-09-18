@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3'
 
 services:
   mariadb:
@@ -39,17 +39,17 @@ services:
       - wordpress
     restart: always
 
-networks:
-  inception:
-      name: inception
 volumes:
   mariadb:
     driver_opts:
       type: none
       o: bind
-      device: /home/omanar/data/mariadb/.
+      device: /home/omanar/data/mariadb/
   wordpress:
     driver_opts:
       type: none
       o: bind
-      device: /home/omanar/data/wordpress/.
+      device: /home/omanar/data/wordpress/
+
+networks:
+  inception:

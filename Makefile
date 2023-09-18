@@ -1,5 +1,5 @@
 NAME = Inception
-DOCKER_COMPOSE = ./srcs/docker-compose.yml
+DOCKER_COMPOSE = srcs/docker-compose.yml
 
 all: $(NAME)
 
