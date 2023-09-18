@@ -8,9 +8,9 @@ cd /var/www/html/wordpress
 
 rm -rf *
 
-sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = wordpress:9000/g' /etc/php/7.4/fpm/pool.d/www.conf
-
 wp core download --allow-root
+
+sleep 3
 
 wp config create --dbname=${DATABASE} --dbuser=${DB_USER} --dbpass=${DB_PASS}  --dbhost=${DB_HOST} --dbprefix=wp --allow-root
 
