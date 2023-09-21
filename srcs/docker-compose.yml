@@ -38,6 +38,44 @@ services:
     depends_on:
       - wordpress
     restart: always
+  redis:
+    image: redis
+    container_name: redis
+    build: ./requirements/bonus/redis/
+    ports:
+      - 6379:6379
+    volumes:
+      - wordpress:/var/www/html/wordpress/
+    networks:
+      - inception
+    restart: always
+  ftp-server:
+    image: ftp-server
+    container_name: ftp-server
+    build: ./requirements/bonus/ftp-server/
+    ports:
+      - 20:20
+      - 21:21
+      - 12000-12010:12000-12010
+    volumes:
+      - wordpress:/home/vsftpd/
+    networks:
+      - inception
+    env_file:
+      - .env
+    restart: always
+  adminer:
+    image: adminer
+    container_name: adminer
+    build: ./requirements/bonus/adminer/
+    ports:
+      - 8080:8080
+    networks:
+      - inception
+    depends_on:
+      - mariadb
+    restart: always
+    
 
 volumes:
   mariadb:

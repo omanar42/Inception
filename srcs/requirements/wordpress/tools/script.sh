@@ -10,7 +10,7 @@ rm -rf *
 
 wp core download --allow-root
 
-sleep 3
+sleep 5
 
 wp config create --dbname=${DATABASE} --dbuser=${DB_USER} --dbpass=${DB_PASS}  --dbhost=${DB_HOST} --dbprefix=wp --allow-root
 
@@ -19,5 +19,14 @@ wp core install --url=${DOMAIN_NAME} --title=${WP_TITLE} --admin_user=${WP_ADMIN
 wp user create ${NEWUSER_USER} ${NEWUSER_EMAIL} --role=${NEWUSER_ROLE} --first_name=${NEWUSER_FIRSTNAME} --last_name=${NEWUSER_LASTNAME} --user_pass=${NEWUSER_PASS} --allow-root
 
 wp theme install ${WP_THEME} --activate --allow-root
+
+wp plugin install redis-cache --activate --allow-root
+wp config set WP_REDIS_HOST redis --allow-root
+wp config set WP_REDIS_PORT 6379 --raw --allow-root
+wp config set WP_CACHE_KEY_SALT ${DOMAIN_NAME} --allow-root
+wp config set WP_REDIS_CLIENT redis --allow-root
+wp config set WP_REDIS_DATABASE 0 --allow-root
+wp plugin update --all --allow-root
+wp redis enable --allow-root
 
 php-fpm7.4 -R -F

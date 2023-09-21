@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
 RUN  apt-get update && \
-	 apt-get install -y php php-fpm php-mysql mariadb-server mariadb-client curl
+	 apt-get install -y php php-fpm php-mysql mariadb-server mariadb-client curl redis php-redis
 
 RUN sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = wordpress:9000/g' /etc/php/7.4/fpm/pool.d/www.conf
 
