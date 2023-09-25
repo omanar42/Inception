@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inception</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #838282;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .images {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Inception</h1>
+        <p>Exploring the Infrastructure</p>
+    </header>
+    <div class="container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Welcome to my Inception system administration project. This webpage will provide you with an overview of the infrastructure I've set up using Docker.</p>
+        </section>
+
+		<section id="infrastructure-diagram">
+            <h2>Infrastructure Diagram</h2>
+            <p>Here is an overview of the components in our Docker-based setup:</p>
+			<img class="images" src="https://user-images.githubusercontent.com/54292953/147146268-a616f39a-3f16-41f8-80c9-db5494c3dfe7.png" alt="Infrastructure Diagram">
+        </section>
+
+        <section id="service-descriptions">
+            <h2>Service Descriptions</h2>
+			<p>Docker is a containerization platform that allows you to run applications in isolated environments called containers. This allows you to run multiple applications on the same machine without having to worry about them interfering with each other.</p>
+			<p>For this project, I've set up a Docker Compose file that will run the following containers:</p>
+			<ul>
+                <section>
+                    <h3>NGINX</h3>
+                    <p>NGINX is a web server that can be used as a reverse proxy. This means that it can forward requests to other servers based on the request's URL. In this case, NGINX is forwarding requests to the WordPress container.</p>
+                </section>
+                <section>
+                    <h3>WordPress + php-fpm</h3>
+                    <p>WordPress is a content management system that allows you to create and manage websites. It uses php-fpm to process PHP code.</p>
+                </section>
+                <section>
+                    <h3>MariaDB</h3>
+                    <p>MariaDB is a relational database management system that is used by WordPress to store data.</p>
+                </section>
+                <section>
+                    <h3>Redis</h3>
+                    <p>Redis is an in-memory data structure store that is used by WordPress to cache data.</p>
+                </section>
+                <section>
+                    <h3>FTP server</h3>
+                    <p>The FTP server is used to upload files to the WordPress container.</p>
+                </section>
+                <section>
+                    <h3>Adminer</h3>
+                    <p>Adminer is a web-based database management tool that is used to manage the MariaDB database.</p>
+                </section>
+                <section>
+                    <h3>Cadvisor</h3>
+                    <p>Cadvisor is a container monitoring tool that is used to monitor the Docker containers.</p>
+                </section>
+                <section>
+                    <h3>This webpage</h3>
+                    <p>This webpage is used to provide an overview of the infrastructure.</p>
+                </section>
+			</ul>
+			<p>These containers are all linked together using a Docker network. This allows them to communicate with each other.</p>
+		</section>
+
+        <section id="Conclusion">
+            <h2>Conclusion</h2>
+            <p>Thank you for visiting my Inception system administration project. I hope you enjoyed learning about the infrastructure I've set up using Docker.</p>
+        </section>
+
+    </div>
+</body>
+</html>

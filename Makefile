@@ -7,7 +7,7 @@ $(NAME): build start
 
 build:
 	@echo "\n\033[1;36m   | Building Docker images...\033[0m\n"
-	@sudo docker-compose -f $(DOCKER_COMPOSE) build -q
+	@sudo docker-compose -f $(DOCKER_COMPOSE) build
 	@echo "\033[1;32m   | Docker images built successfully!\033[0m\n"
 
 start:

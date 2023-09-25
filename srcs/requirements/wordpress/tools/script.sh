@@ -26,6 +26,8 @@ wp config set WP_REDIS_PORT 6379 --raw --allow-root
 wp config set WP_CACHE_KEY_SALT ${DOMAIN_NAME} --allow-root
 wp config set WP_REDIS_CLIENT redis --allow-root
 wp config set WP_REDIS_DATABASE 0 --allow-root
+wp config set WP_CACHE true --allow-root
+wp config set WP_REDIS_PATH /var/run/redis/redis.sock --allow-root
 wp plugin update --all --allow-root
 wp redis enable --allow-root
 

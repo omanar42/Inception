@@ -49,16 +49,15 @@ services:
     networks:
       - inception
     restart: always
-  ftp-server:
-    image: ftp-server
-    container_name: ftp-server
-    build: ./requirements/bonus/ftp-server/
+  ftp:
+    image: ftp
+    container_name: ftp
+    build: ./requirements/bonus/ftp/
     ports:
-      - 20:20
-      - 21:21
-      - 12000-12010:12000-12010
+      - 20-21:20-21
+      - 21100-21110:21100-21110
     volumes:
-      - wordpress:/home/vsftpd/
+      - wordpress:/var/www/html
     networks:
       - inception
     env_file:
@@ -68,14 +67,25 @@ services:
     image: adminer
     container_name: adminer
     build: ./requirements/bonus/adminer/
-    ports:
-      - 8080:8080
     networks:
       - inception
     depends_on:
       - mariadb
     restart: always
-    
+  cadvisor:
+    image: cadvisor
+    container_name: cadvisor
+    build: ./requirements/bonus/cadvisor/
+    networks:
+      - inception
+    restart: always
+  website:
+    image: website
+    container_name: website
+    build: ./requirements/bonus/website/
+    networks:
+      - inception
+    restart: always
 
 volumes:
   mariadb:
