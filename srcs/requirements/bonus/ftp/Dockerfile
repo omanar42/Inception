@@ -2,13 +2,11 @@ FROM debian:bullseye
 
 RUN apt-get update && apt-get install -y vsftpd
 
-COPY ./conf/vsftpd.conf /etc/vsftpd/
-
+COPY ./conf/vsftpd.conf /etc/vsftpd.conf
+COPY ./conf/vsftpd.pem /etc/ssl/private/vsftpd.pem
 COPY ./tools/script.sh ./script.sh
+RUN chmod +x ./script.sh
 
-RUN chmod +x ./script.sh && \
-		mkdir -p /var/run/vsftpd/empty
+EXPOSE 21
 
-EXPOSE 20 21
-
-CMD ["./script.sh"]
+ENTRYPOINT ["./script.sh"]

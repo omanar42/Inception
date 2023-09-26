@@ -1,7 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
-mkdir -p /home/vsftpd
-chown -R ftp:ftp /home/vsftpd
-echo -e "${FTP_USER}\n${FTP_PASS}" > /etc/vsftpd.userlist
+if [ ! -f "/etc/vsftpd.conf.bak" ]; then
 
-vsftpd /etc/vsftpd/vsftpd.conf
+mkdir -p /var/www/html
+mkdir -p /var/run/vsftpd/empty
+
+cp /etc/vsftpd.conf /etc/vsftpd.conf.bak
+
+adduser --disabled-password --gecos "" $FTP_USER
+echo "$FTP_USER:$FTP_PASS" | /usr/sbin/chpasswd &> /dev/null
+chown -R $FTP_USER:$FTP_USER /var/www/html
+echo $FTP_USER >> /etc/vsftpd.userlist
+
+fi
+
+/usr/sbin/vsftpd /etc/vsftpd.conf

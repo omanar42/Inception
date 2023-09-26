@@ -1,10 +1,13 @@
 #!/bin/bash
 
+if [ ! -f "/var/www/html/wordpress/index.php.bak" ]; then
+
 mkdir -p /var/www/html/wordpress
 
 mkdir -p /run/php
 
 cd /var/www/html/wordpress
+
 
 rm -rf *
 
@@ -30,5 +33,9 @@ wp config set WP_CACHE true --allow-root
 wp config set WP_REDIS_PATH /var/run/redis/redis.sock --allow-root
 wp plugin update --all --allow-root
 wp redis enable --allow-root
+
+cp index.php index.php.bak
+
+fi
 
 php-fpm7.4 -R -F
