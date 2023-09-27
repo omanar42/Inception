@@ -6,6 +6,9 @@ mkdir -p /var/www/html/wordpress
 
 mkdir -p /run/php
 
+chmod -R 777 /var/www/html/wordpress
+chown -R www-data:www-data /var/www/html/wordpress
+
 cd /var/www/html/wordpress
 
 
@@ -23,16 +26,16 @@ wp user create ${NEWUSER_USER} ${NEWUSER_EMAIL} --role=${NEWUSER_ROLE} --first_n
 
 wp theme install ${WP_THEME} --activate --allow-root
 
-wp plugin install redis-cache --activate --allow-root
-wp config set WP_REDIS_HOST redis --allow-root
-wp config set WP_REDIS_PORT 6379 --raw --allow-root
-wp config set WP_CACHE_KEY_SALT ${DOMAIN_NAME} --allow-root
-wp config set WP_REDIS_CLIENT redis --allow-root
-wp config set WP_REDIS_DATABASE 0 --allow-root
-wp config set WP_CACHE true --allow-root
-wp config set WP_REDIS_PATH /var/run/redis/redis.sock --allow-root
+wp plugin install redis-cache --activate --path="/var/www/html/wordpress" --allow-root
+wp config set WP_REDIS_HOST redis --path="/var/www/html/wordpress" --allow-root
+wp config set WP_REDIS_PORT 6379 --path="/var/www/html/wordpress" --raw --allow-root
+wp config set WP_CACHE_KEY_SALT ${DOMAIN_NAME} --path="/var/www/html/wordpress" --allow-root
+wp config set WP_REDIS_CLIENT redis --path="/var/www/html/wordpress" --allow-root
+wp config set WP_REDIS_DATABASE 0 --path="/var/www/html/wordpress" --allow-root
+wp config set WP_CACHE true --path="/var/www/html/wordpress" --allow-root
+wp config set WP_REDIS_PATH /var/run/redis/redis.sock --path="/var/www/html/wordpress" --allow-root
 wp plugin update --all --allow-root
-wp redis enable --allow-root
+wp redis enable --path="/var/www/html/wordpress" --force --allow-root
 
 cp index.php index.php.bak
 
