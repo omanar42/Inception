@@ -89,15 +89,15 @@ services:
 
 volumes:
   mariadb:
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/omanar/data/mariadb/
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/omanar/data/mariadb/
   wordpress:
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/omanar/data/wordpress/
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/omanar/data/wordpress/
 
 networks:
   inception:
